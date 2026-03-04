@@ -123,8 +123,8 @@ export const siteData = {
       features: [
         'Hortaliças frescas semanais',
         'Cereais em quantidade familiar',
-        'Galihas cafriais',
-        'farinha de ruquedza',
+        'Galinhas cafriais',
+        'Farinha de ruquedza',
         'Entrega a nível da província'
       ],
       highlighted: false
