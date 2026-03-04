@@ -83,10 +83,10 @@ export const Contact: React.FC = () => {
                   <h4 className="font-semibold text-green-950 mb-1">Email</h4>
                   <p className="text-muted text-sm">
                     <a
-                      href={`mailto:${siteData.company.email}`}
+                      href={`mailto:${siteData.company.emails[0]}`}
                       className="hover:text-accent transition-colors"
                     >
-                      {siteData.company.email}
+                      {siteData.company.emails[0]}
                     </a>
                   </p>
                 </div>

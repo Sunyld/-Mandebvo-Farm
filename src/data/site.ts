@@ -1,11 +1,11 @@
 export const siteData = {
   company: {
-    name: 'Fazenda Mandebvo',
+    name: 'Farm Mandebvo',
     subtitle: 'Mandebvo Farm',
     location: 'Província de Manica, Distrito de Vanduzi, Bairro 1º de Maio – Moçambique',
     director: 'Carmen Francisco Victor Vontade',
     phones: ['+258861848141', '+258842254645'],
-    email: 'vcarmenvontade@gmail.com'
+    emails: ['vcarmenvontade@gmail.com', 'mitexvontade@gmail.com']
   },
 
   navigation: [
@@ -171,7 +171,7 @@ export const siteData = {
     {
       name: 'Maria Santos',
       role: 'Cliente Familiar',
-      text: 'Há dois anos consumo os produtos da fazenda. A diferença na qualidade e frescor é notável, principalmente nas hortaliças.',
+      text: 'Há dois anos consumo os produtos da Farm. A diferença na qualidade e frescor é notável, principalmente nas hortaliças.',
       avatar: 'MS'
     }
   ],
@@ -197,6 +197,10 @@ export const siteData = {
       { label: 'Galeria', href: '#galeria' },
       { label: 'Contacto', href: '#contacto' }
     ],
-    copyright: '2024 Fazenda Mandebvo. Todos os direitos reservados.'
+    copyright: '2026 Farm Mandebvo. Todos os direitos reservados.',
+    poweredBy: {
+      name: 'Sunylddev',
+      url: 'https://sunylddev.vercel.app'
+    }
   }
 };

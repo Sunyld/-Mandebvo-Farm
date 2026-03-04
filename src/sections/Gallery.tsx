@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react';
 import { Container } from '../components/Container';
 import { SectionTitle } from '../components/SectionTitle';
 import { siteData } from '../data/site';
@@ -20,6 +20,8 @@ export const Gallery: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalFolder, setModalFolder] = useState<string | null>(null);
   const [modalIndex, setModalIndex] = useState(0);
+  const [hintIndex, setHintIndex] = useState<number | null>(null);
+  const hintTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     const modules = import.meta.glob('../assets/gallery/**/*.{jpg,jpeg,png,webp,gif}', { eager: true, as: 'url' }) as Record<string, string>;
@@ -72,6 +74,12 @@ export const Gallery: React.FC = () => {
     return () => window.removeEventListener('keydown', onKey);
   }, [modalOpen, closeModal, goNext, goPrev]);
 
+  useEffect(() => {
+    return () => {
+      if (hintTimerRef.current) window.clearTimeout(hintTimerRef.current);
+    };
+  }, []);
+
   const prepared = useMemo(() => {
     return siteData.gallery.map((item) => {
       const folder = item.placeholder;
@@ -94,6 +102,15 @@ export const Gallery: React.FC = () => {
               key={index}
               className="group relative aspect-[4/3] rounded-[var(--radius-2xl)] overflow-hidden shadow-card hover:shadow-xl transition-all duration-300 cursor-pointer"
               onClick={() => openFolderAt(item.folder, 0)}
+              onMouseEnter={() => {
+                if (hintTimerRef.current) window.clearTimeout(hintTimerRef.current);
+                setHintIndex(index);
+                // hide hint after 1.5s
+                hintTimerRef.current = window.setTimeout(() => {
+                  setHintIndex(null);
+                  hintTimerRef.current = null;
+                }, 1500) as unknown as number;
+              }}
             >
               {item.imgs && item.imgs[0] ? (
                 <div className="w-full h-full relative">
@@ -104,6 +121,12 @@ export const Gallery: React.FC = () => {
                       {item.alt}
                     </p>
                   </div>
+                  {/* transient hint shown briefly after hover starts */}
+                  {hintIndex === index && (
+                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 pointer-events-none bg-black/70 text-white text-xs px-3 py-1 rounded-md opacity-90">
+                      Clique para ver mais fotos
+                    </div>
+                  )}
                 </div>
               ) : (
                 <>

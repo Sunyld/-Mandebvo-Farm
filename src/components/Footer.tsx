@@ -69,12 +69,18 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                <a
-                  href={`mailto:${siteData.company.email}`}
-                  className="text-white/80 hover:text-accent transition-colors text-sm"
-                >
-                  {siteData.company.email}
-                </a>
+                <div className="text-white/80 text-sm">
+                  {siteData.company.emails.map((email: string, i: number) => (
+                    <div key={i}>
+                      <a
+                        href={`mailto:${email}`}
+                        className="hover:text-accent transition-colors"
+                      >
+                        {email}
+                      </a>
+                    </div>
+                  ))}
+                </div>
               </li>
             </ul>
           </div>
@@ -84,6 +90,19 @@ export const Footer: React.FC = () => {
           <p className="text-center text-white/60 text-sm">
             {siteData.footer.copyright}
           </p>
+          {siteData.footer.poweredBy && (
+            <p className="text-center text-white/60 text-sm mt-2">
+              Powered by{' '}
+              <a
+                href={siteData.footer.poweredBy.url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-white/80 hover:text-accent underline"
+              >
+                {siteData.footer.poweredBy.name}
+              </a>
+            </p>
+          )}
         </div>
       </Container>
     </footer>

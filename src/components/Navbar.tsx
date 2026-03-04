@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Leaf } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from './Button';
 import { Container } from './Container';
 import { siteData } from '../data/site';
+import logo from '../assets/logo/logo.png';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,8 +45,8 @@ export const Navbar: React.FC = () => {
               }}
               className="flex items-center gap-2 group"
             >
-              <div className="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center transition-transform group-hover:scale-110">
-                <Leaf className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 rounded-full overflow-hidden transition-transform group-hover:scale-110">
+                <img src={logo} alt={siteData.company.name} className="w-10 h-10 object-cover" />
               </div>
               <div className="flex flex-col">
                 <span
